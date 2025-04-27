@@ -84,3 +84,10 @@ uv run python <script.py>
 # Run any installed command
 uv run <command>
 ```
+
+
+## Use flower
+
+```bash
+uv run celery -A worker flower
+```
