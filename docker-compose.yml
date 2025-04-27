@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_HOST=host.docker.internal
+    command: uv run celery -A worker.celery worker --loglevel=info

@@ -1,6 +1,11 @@
 from celery import Celery
+import os
 
-app = Celery("celery", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0")
+# 从环境变量获取Redis主机，默认为localhost
+redis_host = os.environ.get('REDIS_HOST', 'localhost')
+redis_url = f"redis://{redis_host}:6379/0"
+
+app = Celery("celery", broker=redis_url, backend=redis_url)
 
 # 配置队列
 app.conf.task_queues = {
